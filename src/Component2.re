@@ -8,7 +8,6 @@ type state = {
 /* Action declaration */
 type action =
   | Click
-  | IncrementCount
   | AddMany(int)
   | Toggle;
 
@@ -19,9 +18,6 @@ let make = (~greeting) => {
       (state, action) =>
         switch (action) {
         | Click => {...state, count: state.count + 1}
-        | IncrementCount =>
-          state.incrementValue := state.incrementValue^ + 1;
-          {...state, incrementValue: state.incrementValue};
         | AddMany(incrementValue) => {
             ...state,
             count: state.count + incrementValue,
