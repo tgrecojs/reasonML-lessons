@@ -7,20 +7,40 @@ var React = require("react");
 function Component2(Props) {
   var greeting = Props.greeting;
   var match = React.useReducer((function (state, action) {
-          if (action) {
-            return /* record */[
-                    /* count */state[/* count */0],
-                    /* show */!state[/* show */1]
-                  ];
+          if (typeof action === "number") {
+            switch (action) {
+              case /* Click */0 :
+                  return /* record */[
+                          /* count */state[/* count */0] + 1 | 0,
+                          /* show */state[/* show */1],
+                          /* incrementValue */state[/* incrementValue */2]
+                        ];
+              case /* IncrementCount */1 :
+                  state[/* incrementValue */2][0] = state[/* incrementValue */2][0] + 1 | 0;
+                  return /* record */[
+                          /* count */state[/* count */0],
+                          /* show */state[/* show */1],
+                          /* incrementValue */state[/* incrementValue */2]
+                        ];
+              case /* Toggle */2 :
+                  return /* record */[
+                          /* count */state[/* count */0],
+                          /* show */!state[/* show */1],
+                          /* incrementValue */state[/* incrementValue */2]
+                        ];
+              
+            }
           } else {
             return /* record */[
-                    /* count */state[/* count */0] + 1 | 0,
-                    /* show */state[/* show */1]
+                    /* count */state[/* count */0] + action[0] | 0,
+                    /* show */state[/* show */1],
+                    /* incrementValue */state[/* incrementValue */2]
                   ];
           }
         }), /* record */[
         /* count */0,
-        /* show */true
+        /* show */true,
+        /* incrementValue : record */[/* contents */0]
       ]);
   var dispatch = match[1];
   var state = match[0];
@@ -32,7 +52,11 @@ function Component2(Props) {
                     })
                 }, message), React.createElement("button", {
                   onClick: (function (_event) {
-                      return Curry._1(dispatch, /* Toggle */1);
+                      return Curry._1(dispatch, /* AddMany */[5]);
+                    })
+                }, "Add Many to Count"), React.createElement("button", {
+                  onClick: (function (_event) {
+                      return Curry._1(dispatch, /* Toggle */2);
                     })
                 }, "Toggle greeting"), match$1 ? greeting : null);
 }
