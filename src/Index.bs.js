@@ -3,9 +3,9 @@
 
 var React = require("react");
 var ReactDOMRe = require("reason-react/src/ReactDOMRe.js");
-var Component2$ReactHooksTemplate = require("./Component2.bs.js");
+var Counters$ReactHooksTemplate = require("./Counters.bs.js");
 
-ReactDOMRe.renderToElementWithId(React.createElement(Component2$ReactHooksTemplate.make, {
+ReactDOMRe.renderToElementWithId(React.createElement(Counters$ReactHooksTemplate.make, {
           greeting: "Hello!"
         }), "root");
 

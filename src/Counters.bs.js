@@ -3,8 +3,9 @@
 
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
+var Layout$ReactHooksTemplate = require("./Layout.bs.js");
 
-function Component2(Props) {
+function Counters(Props) {
   var greeting = Props.greeting;
   var match = React.useReducer((function (state, action) {
           if (typeof action === "number") {
@@ -37,7 +38,10 @@ function Component2(Props) {
   var state = match[0];
   var message = "You've clicked this " + (String(state[/* count */0]) + " times(s)");
   var match$1 = state[/* show */1];
-  return React.createElement("div", undefined, React.createElement("button", {
+  return React.createElement(Layout$ReactHooksTemplate.make, {
+              username: "Thomas Greco",
+              children: null
+            }, React.createElement("button", {
                   onClick: (function (_event) {
                       return Curry._1(dispatch, /* Click */0);
                     })
@@ -52,7 +56,7 @@ function Component2(Props) {
                 }, "Toggle greeting"), match$1 ? greeting : null);
 }
 
-var make = Component2;
+var make = Counters;
 
 exports.make = make;
 /* react Not a pure module */

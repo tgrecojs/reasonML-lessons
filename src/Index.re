@@ -1,1 +1,1 @@
-ReactDOMRe.renderToElementWithId(<Component2 greeting="Hello!" />, "root");
+ReactDOMRe.renderToElementWithId(<Counters greeting="Hello!" />, "root");
