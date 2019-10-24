@@ -1,46 +1,49 @@
 /* State declaration */
 type state = {
   count: int,
-  show: bool,
-  incrementValue: ref(int),
+  incrementValue: ref(int)
 };
 
 /* Action declaration */
 type action =
   | Click
-  | AddMany(int)
-  | Toggle;
+  | UpdateIncrementValue
+  | AddMany;
 
 [@react.component]
-let make = (~greeting) => {
+let make = (~greeting = "Default Greeting") => {
   let (state, dispatch) =
     React.useReducer(
       (state, action) =>
         switch (action) {
         | Click => {...state, count: state.count + 1}
-        | AddMany(incrementValue) => 
-        
+        | UpdateIncrementValue =>
+        Js.log(state.incrementValue^);
+        state.incrementValue := state.incrementValue^ + 1;
+        {...state, incrementValue: state.incrementValue }
+        | AddMany => 
         {
-            ...state,
-            count: state.count + incrementValue,
+            count: state.count + state.incrementValue^,
+            incrementValue: ref(0)
           }
-        | Toggle => {...state, show: !state.show}
         },
-      {count: 0, show: true, incrementValue: ref(0)},
+      {count: 0, incrementValue: ref(0) },
     );
 
   let message =
     "You've clicked this " ++ string_of_int(state.count) ++ " times(s)";
-  <Layout username="Thomas Greco">
+  <Layout username="tgrecojs">
+    <h2>{ReasonReact.string(greeting)}</h2>
     <button onClick={_event => dispatch(Click)}>
       {ReasonReact.string(message)}
     </button>
-    <button onClick={_event => dispatch(AddMany(5))}>
-      {ReasonReact.string("Add Many to Count")}
+  <div>
+   <button onClick={_event => dispatch(UpdateIncrementValue)}>
+      {ReasonReact.string("Increase Increment Value::" ++ string_of_int(state.incrementValue^) )}
     </button>
-    <button onClick={_event => dispatch(Toggle)}>
-      {ReasonReact.string("Toggle greeting")}
+    <button onClick={_event => dispatch(AddMany)}>
+      {ReasonReact.string("Add Increment Value to Count")}
     </button>
-    {state.show ? ReasonReact.string(greeting) : ReasonReact.null}
+  </div>
   </Layout>;
 };

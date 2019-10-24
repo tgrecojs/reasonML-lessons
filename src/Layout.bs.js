@@ -4,11 +4,12 @@
 var React = require("react");
 
 function Layout(Props) {
-  var username = Props.username;
   var children = Props.children;
-  return React.createElement(React.Fragment, undefined, React.createElement("nav", undefined, React.createElement("li", undefined, "Signed in as:" + username)), React.createElement("div", {
+  var match = Props.username;
+  var username = match !== undefined ? match : "Default User";
+  return React.createElement(React.Fragment, undefined, React.createElement("nav", undefined, React.createElement("li", undefined, username)), React.createElement("div", {
                   className: "content"
-                }, children), React.createElement("footer", undefined, React.createElement("h4", undefined, "Footer text")));
+                }, children), React.createElement("footer", undefined, React.createElement("h3", undefined, "Created for Egghead.io - 2019")));
 }
 
 var make = Layout;

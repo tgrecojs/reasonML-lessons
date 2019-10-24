@@ -6,54 +6,52 @@ var React = require("react");
 var Layout$ReactHooksTemplate = require("./Layout.bs.js");
 
 function Counters(Props) {
-  var greeting = Props.greeting;
-  var match = React.useReducer((function (state, action) {
-          if (typeof action === "number") {
-            if (action !== 0) {
-              return /* record */[
-                      /* count */state[/* count */0],
-                      /* show */!state[/* show */1],
-                      /* incrementValue */state[/* incrementValue */2]
-                    ];
-            } else {
-              return /* record */[
-                      /* count */state[/* count */0] + 1 | 0,
-                      /* show */state[/* show */1],
-                      /* incrementValue */state[/* incrementValue */2]
-                    ];
-            }
-          } else {
-            return /* record */[
-                    /* count */state[/* count */0] + action[0] | 0,
-                    /* show */state[/* show */1],
-                    /* incrementValue */state[/* incrementValue */2]
-                  ];
+  var match = Props.greeting;
+  var greeting = match !== undefined ? match : "Default Greeting";
+  var match$1 = React.useReducer((function (state, action) {
+          switch (action) {
+            case /* Click */0 :
+                return /* record */[
+                        /* count */state[/* count */0] + 1 | 0,
+                        /* incrementValue */state[/* incrementValue */1]
+                      ];
+            case /* UpdateIncrementValue */1 :
+                console.log(state[/* incrementValue */1][0]);
+                state[/* incrementValue */1][0] = state[/* incrementValue */1][0] + 1 | 0;
+                return /* record */[
+                        /* count */state[/* count */0],
+                        /* incrementValue */state[/* incrementValue */1]
+                      ];
+            case /* AddMany */2 :
+                return /* record */[
+                        /* count */state[/* count */0] + state[/* incrementValue */1][0] | 0,
+                        /* incrementValue : record */[/* contents */0]
+                      ];
+            
           }
         }), /* record */[
         /* count */0,
-        /* show */true,
         /* incrementValue : record */[/* contents */0]
       ]);
-  var dispatch = match[1];
-  var state = match[0];
+  var dispatch = match$1[1];
+  var state = match$1[0];
   var message = "You've clicked this " + (String(state[/* count */0]) + " times(s)");
-  var match$1 = state[/* show */1];
   return React.createElement(Layout$ReactHooksTemplate.make, {
-              username: "Thomas Greco",
-              children: null
-            }, React.createElement("button", {
+              children: null,
+              username: "tgrecojs"
+            }, React.createElement("h2", undefined, greeting), React.createElement("button", {
                   onClick: (function (_event) {
                       return Curry._1(dispatch, /* Click */0);
                     })
-                }, message), React.createElement("button", {
-                  onClick: (function (_event) {
-                      return Curry._1(dispatch, /* AddMany */[5]);
-                    })
-                }, "Add Many to Count"), React.createElement("button", {
-                  onClick: (function (_event) {
-                      return Curry._1(dispatch, /* Toggle */1);
-                    })
-                }, "Toggle greeting"), match$1 ? greeting : null);
+                }, message), React.createElement("div", undefined, React.createElement("button", {
+                      onClick: (function (_event) {
+                          return Curry._1(dispatch, /* UpdateIncrementValue */1);
+                        })
+                    }, "Increase Increment Value::" + String(state[/* incrementValue */1][0])), React.createElement("button", {
+                      onClick: (function (_event) {
+                          return Curry._1(dispatch, /* AddMany */2);
+                        })
+                    }, "Add Increment Value to Count")));
 }
 
 var make = Counters;

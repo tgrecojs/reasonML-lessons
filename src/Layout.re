@@ -1,15 +1,15 @@
-[@react.component]
-let make = (~username, ~children) =>
+[@react.component] 
+let make = (~children, ~username = "Default User") =>
     <>
         <nav>
             <li>
-                {ReasonReact.string("Signed in as:" ++ username)}
+                {ReasonReact.string(username)}
             </li>
         </nav>
         <div className="content">
-        {children}
+            {children}
         </div>
         <footer>
-            <h4>{ReasonReact.string("Footer text")}</h4>
+            <h3>{ReasonReact.string("Created for Egghead.io - 2019")}</h3>
         </footer>
-    </>;
+    </>
