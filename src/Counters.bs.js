@@ -4,6 +4,7 @@
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
 var Layout$ReactHooksTemplate = require("./Layout.bs.js");
+var Styles$ReactHooksTemplate = require("./Styles.bs.js");
 
 function Counters(Props) {
   var match = Props.greeting;
@@ -40,14 +41,17 @@ function Counters(Props) {
               children: null,
               username: "tgrecojs"
             }, React.createElement("h2", undefined, greeting), React.createElement("button", {
+                  className: Styles$ReactHooksTemplate.Styles.button,
                   onClick: (function (_event) {
                       return Curry._1(dispatch, /* Click */0);
                     })
                 }, message), React.createElement("div", undefined, React.createElement("button", {
+                      className: Styles$ReactHooksTemplate.Styles.button,
                       onClick: (function (_event) {
                           return Curry._1(dispatch, /* UpdateIncrementValue */1);
                         })
                     }, "Increase Increment Value::" + String(state[/* incrementValue */1][0])), React.createElement("button", {
+                      className: Styles$ReactHooksTemplate.Styles.button,
                       onClick: (function (_event) {
                           return Curry._1(dispatch, /* AddMany */2);
                         })
