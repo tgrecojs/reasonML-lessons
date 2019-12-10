@@ -25,12 +25,15 @@ var wrapperStyles = Css.style(/* :: */[
 var button = Css.style(/* :: */[
       Css.width(Css.px(300)),
       /* :: */[
-        Css.fontSize(Css.px(18)),
+        Css.margin(Css.px(10)),
         /* :: */[
-          Css.color(Css.hex("FFF")),
+          Css.fontSize(Css.px(18)),
           /* :: */[
-            Css.backgroundColor(Css.hex("042E89")),
-            /* [] */0
+            Css.color(Css.hex("FFF")),
+            /* :: */[
+              Css.backgroundColor(Css.hex("042E89")),
+              /* [] */0
+            ]
           ]
         ]
       ]
