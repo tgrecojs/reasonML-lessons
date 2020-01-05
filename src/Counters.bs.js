@@ -7,7 +7,7 @@ var Layout$ReactHooksTemplate = require("./Layout.bs.js");
 var Styles$ReactHooksTemplate = require("./Styles.bs.js");
 
 function addOne(x) {
-  return x + 1 | 0;
+  return x + 2 | 0;
 }
 
 function Counters(Props) {
@@ -17,7 +17,7 @@ function Counters(Props) {
           switch (action) {
             case /* Click */0 :
                 return {
-                        count: state.count + 1 | 0,
+                        count: state.count + 2 | 0,
                         incrementValue: state.incrementValue
                       };
             case /* UpdateIncrementValue */1 :
