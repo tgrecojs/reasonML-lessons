@@ -12,7 +12,7 @@ type action =
   | UpdateIncrementValue
   | AddMany;
 
-let addOne = x => x + 2;
+let addOne = x => x + 1;
 
 [@react.component]
 let make = (~greeting="Default Greeting") => {
