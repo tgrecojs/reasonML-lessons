@@ -6,6 +6,10 @@ var React = require("react");
 var Layout$ReactHooksTemplate = require("./Layout.bs.js");
 var Styles$ReactHooksTemplate = require("./Styles.bs.js");
 
+function addOne(x) {
+  return x + 1 | 0;
+}
+
 function Counters(Props) {
   var match = Props.greeting;
   var greeting = match !== undefined ? match : "Default Greeting";
@@ -17,22 +21,20 @@ function Counters(Props) {
                         /* incrementValue */state[/* incrementValue */1]
                       ];
             case /* UpdateIncrementValue */1 :
-                console.log(state[/* incrementValue */1][0]);
-                state[/* incrementValue */1][0] = state[/* incrementValue */1][0] + 1 | 0;
                 return /* record */[
                         /* count */state[/* count */0],
-                        /* incrementValue */state[/* incrementValue */1]
+                        /* incrementValue */state[/* incrementValue */1] + 1 | 0
                       ];
             case /* AddMany */2 :
                 return /* record */[
-                        /* count */state[/* count */0] + state[/* incrementValue */1][0] | 0,
-                        /* incrementValue : record */[/* contents */0]
+                        /* count */state[/* count */0] + state[/* incrementValue */1] | 0,
+                        /* incrementValue */0
                       ];
             
           }
         }), /* record */[
         /* count */0,
-        /* incrementValue : record */[/* contents */0]
+        /* incrementValue */0
       ]);
   var dispatch = match$1[1];
   var state = match$1[0];
@@ -50,7 +52,7 @@ function Counters(Props) {
                       onClick: (function (_event) {
                           return Curry._1(dispatch, /* UpdateIncrementValue */1);
                         })
-                    }, "Increase Increment Value::" + String(state[/* incrementValue */1][0])), React.createElement("button", {
+                    }, "Increase Increment Value::" + String(state[/* incrementValue */1])), React.createElement("button", {
                       className: Styles$ReactHooksTemplate.Styles.button,
                       onClick: (function (_event) {
                           return Curry._1(dispatch, /* AddMany */2);
@@ -60,5 +62,6 @@ function Counters(Props) {
 
 var make = Counters;
 
+exports.addOne = addOne;
 exports.make = make;
 /* react Not a pure module */
