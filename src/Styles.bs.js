@@ -41,5 +41,11 @@ var Styles = {
   button: button
 };
 
+var AppDesign = {
+  wrapperStyles: wrapperStyles,
+  button: button
+};
+
 exports.Styles = Styles;
+exports.AppDesign = AppDesign;
 /*  Not a pure module */
