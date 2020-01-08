@@ -1,5 +1,3 @@
-open Styles;
-
 /* State declaration */
 type state = {
   count: int,
@@ -36,24 +34,19 @@ let make = (~greeting="Default Greeting") => {
   let message =
     "You've clicked this " ++ string_of_int(state.count) ++ " times(s)";
   <Layout username="tgrecojs">
-    <h2> {ReasonReact.string(greeting)} </h2>
+    <h2> {React.string(greeting)} </h2>
     <button className=Styles.button onClick={_event => dispatch(Click)}>
-      {ReasonReact.string(message)}
+      {React.string(message)}
     </button>
-    <div>
-      <button
-        className=Styles.button
-        onClick={_event => dispatch(UpdateIncrementValue)}>
-        {
-          ReasonReact.string(
-            "Increase Increment Value::"
-            ++ string_of_int(state.incrementValue),
-          )
-        }
-      </button>
-      <button className=Styles.button onClick={_event => dispatch(AddMany)}>
-        {ReasonReact.string("Add Increment Value to Count")}
-      </button>
-    </div>
+    <button
+      className=Styles.button
+      onClick={_event => dispatch(UpdateIncrementValue)}>
+      {React.string(
+         "Increase Increment Value::" ++ string_of_int(state.incrementValue),
+       )}
+    </button>
+    <button className=Styles.button onClick={_event => dispatch(AddMany)}>
+      {React.string("Add Increment Value to Count")}
+    </button>
   </Layout>;
 };
