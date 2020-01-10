@@ -10,15 +10,13 @@ type action =
   | UpdateIncrementValue
   | AddMany;
 
-let addOne = x => x + 1;
-
 [@react.component]
 let make = (~greeting="Default Greeting") => {
   let (state, dispatch) =
     React.useReducer(
       (state, action) =>
         switch (action) {
-        | Click => {...state, count: addOne(state.count)}
+        | Click => {...state, count: state.count + 1}
         | UpdateIncrementValue => {
             ...state,
             incrementValue: state.incrementValue + 1,
